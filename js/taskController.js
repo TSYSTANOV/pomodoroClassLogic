@@ -26,7 +26,7 @@ class TaskController{
             }
         })
         const pomodoroTasks = LOCAL_STORAGE_component.getItem('pomodoroTasks')
-        if(pomodoroTasks){
+        if(pomodoroTasks && pomodoroTasks.length !== 0){
             this.render(pomodoroTasks)
         }
     }
@@ -119,8 +119,9 @@ class TaskController{
         return newTitle
     }
     deleteTask(id){
+        console.log(id)
         const taskLocal = LOCAL_STORAGE_component.getItem('pomodoroTasks')
-        if(taskLocal){
+        if(taskLocal && taskLocal.length !== 0){
             let i = null
             taskLocal.find((elem, index)=> {
             if(elem.id === id){
@@ -129,6 +130,13 @@ class TaskController{
             })
             taskLocal.splice(i,1)
             LOCAL_STORAGE_component.setItem('pomodoroTasks', taskLocal)
+            if(taskLocal.length === 0){
+                this.activeTaskId = null
+                this.title.textContent = 'Написать Pomodoro'
+                this.count.textContent = '0'
+                POMODORO_CONTROLLER.stopPomodoro()
+                return
+            }
             if(id === this.activeTaskId){
                 this.chooseTask(taskLocal[taskLocal.length-1].id, taskLocal[taskLocal.length-1].title, taskLocal[taskLocal.length-1].pomodoroCount)
             }

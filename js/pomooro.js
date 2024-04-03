@@ -1,7 +1,7 @@
 class Pomodoro{
-    WORK_time = 1
-    BREAK_time = 2
-    RELAX_time = 3
+    WORK_time = 25
+    BREAK_time = 5
+    RELAX_time = 20
     HOW_MANY_TIME_WORK = 0
     isPause = true
     ACTIVE_STATE = 'WORK_time'
