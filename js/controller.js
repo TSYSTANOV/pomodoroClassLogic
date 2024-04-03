@@ -43,6 +43,7 @@ class Pomodoro_control{
             POMODORO.ACTIVE_STATE = event.target.dataset.use
             btnNavigation.querySelector(`[data-use="${POMODORO.ACTIVE_STATE}"]`).classList.add('navigation__btn_active')
             POMODORO.timerToLeft = POMODORO[POMODORO.ACTIVE_STATE] * 60
+            this.stopPomodoro()
             this.setTimer()
         })
     }

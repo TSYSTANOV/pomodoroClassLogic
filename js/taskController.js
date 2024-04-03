@@ -95,6 +95,7 @@ class TaskController{
             if(this.activeTaskId === pomodoroList[i].id){
                 pomodoroList[i].pomodoroCount += 1
                 LOCAL_STORAGE_component.setItem('pomodoroTasks', pomodoroList)
+                this.count.textContent = pomodoroList[i].pomodoroCount
                 break
             }
         }
@@ -128,6 +129,10 @@ class TaskController{
             })
             taskLocal.splice(i,1)
             LOCAL_STORAGE_component.setItem('pomodoroTasks', taskLocal)
+            if(id === this.activeTaskId){
+                this.chooseTask(taskLocal[taskLocal.length-1].id, taskLocal[taskLocal.length-1].title, taskLocal[taskLocal.length-1].pomodoroCount)
+            }
+            
         }
     }
 }
